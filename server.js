@@ -25,6 +25,7 @@ mongoose
 
 const { User } = require('./models/user');
 const { Portfolio } = require('./models/portfolio');
+const { Review } = require('./models/reviews');
 const { auth } = require('./middleware/auth');
 
 // GET routes //
@@ -66,7 +67,7 @@ app.get('/api/portfolios', (req, res) => {
     .sort({ _id: order })
     .limit(limit)
     .then((doc, err) => res.send(doc))
-    .catch(err => res.json({err:err}));
+    .catch(err => res.json({ err: err }));
 });
 
 // POST routes //
@@ -80,6 +81,27 @@ app.post('/api/portfolio', (req, res) => {
       portfolioId: doc._id
     });
   });
+});
+
+app.post('/api/review/', function(req, res) {
+  // Create a new review and pass the req.body to the entry
+  let id = req.query.id;
+  console.log('review', req.body);
+  Review.create(req.body)
+    .then(function(dbReview) {
+      return Portfolio.findOneAndUpdate(
+        { _id: id },
+        { $push: { review: dbReview._id }, $set:{reviewed: true} },
+        { new: true }
+      );
+    })
+    .then(function(dbReview) {
+      res.json(dbReview);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 app.post('/api/register', (req, res) => {
@@ -122,15 +144,20 @@ app.post('/api/login', (req, res) => {
 });
 
 // UPDATE //
-app.put('/api/portfolio_review', (req, res) => {
-  Portfolio.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, doc) => {
-    if (err) return res.status(400).send(err);
-    res.json({
-      success: true,
-      doc
-    });
-  });
-});
+// app.put('/api/portfolio_review', (req, res) => {
+//   Portfolio.findByIdAndUpdate(
+//     req.body._id,
+//     req.body,
+//     { new: true },
+//     (err, doc) => {
+//       if (err) return res.status(400).send(err);
+//       res.json({
+//         success: true,
+//         doc
+//       });
+//     }
+//   );
+// });
 
 const PORT = process.env.PORT || 3001;
 
