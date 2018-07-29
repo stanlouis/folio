@@ -1,5 +1,5 @@
 {
-  "name": "gweb",
+  "name": "folio",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,12 +18,17 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stanlouis/gweb/issues"
+    "url": "https://github.com/stanlouis/folio/issues"
   },
-  "homepage": "https://github.com/stanlouis/gweb#readme",
+  "homepage": "https://github.com/stanlouis/folio#readme",
   "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "moment-js": "^1.1.15",
     "mongoose": "^5.2.5",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
