@@ -24,6 +24,7 @@ mongoose
   .catch(err => console.log('Could not connect to MongoDB', err));
 
 const { User } = require('./models/user');
+const { Portfolio } = require('./models/portfolio');
 const { auth } = require('./middleware/auth');
 
 // GET routes //
@@ -44,7 +45,43 @@ app.get('/api/logout', auth, (req, res) => {
   });
 });
 
+app.get('/api/getPortfolio', (req, res) => {
+  let id = req.query.id;
+
+  Portfolio.findById(id, (err, doc) => {
+    if (err) return res.status(400).send(err);
+    res.send(doc);
+  });
+});
+
+app.get('/api/portfolios', (req, res) => {
+  // locahost:3001/api/portfolios?skip=3&limit=2&order=asc
+  let skip = parseInt(req.query.skip);
+  let limit = parseInt(req.query.limit);
+  let order = req.query.order;
+
+  // ORDER = asc || desc
+  Portfolio.find()
+    .skip(skip)
+    .sort({ _id: order })
+    .limit(limit)
+    .then((doc, err) => res.send(doc))
+    .catch(err => res.json({err:err}));
+});
+
 // POST routes //
+app.post('/api/portfolio', (req, res) => {
+  const portfolio = new Portfolio(req.body);
+
+  portfolio.save((err, doc) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).json({
+      post: true,
+      portfolioId: doc._id
+    });
+  });
+});
+
 app.post('/api/register', (req, res) => {
   const user = new User(req.body);
 
@@ -80,6 +117,17 @@ app.post('/api/login', (req, res) => {
           email: user.email
         });
       });
+    });
+  });
+});
+
+// UPDATE //
+app.put('/api/portfolio_review', (req, res) => {
+  Portfolio.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, doc) => {
+    if (err) return res.status(400).send(err);
+    res.json({
+      success: true,
+      doc
     });
   });
 });
