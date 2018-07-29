@@ -70,6 +70,28 @@ app.get('/api/portfolios', (req, res) => {
     .catch(err => res.json({ err: err }));
 });
 
+app.get('/api/portfolios/reviewed', (req, res) => {
+  Portfolio.find({ reviewed: true })
+    .then((doc, err) => res.send(doc))
+    .catch(err => res.json({ err: err }));
+});
+
+app.get('/api/portfolio/notes/:id', function(req, res) {
+  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+  console.log(req.params.id)
+  Portfolio.findOne({ _id: req.params.id })
+    // ..and populate all of the notes associated with it
+    .populate('review')
+    .then(function(dbPortfolio) {
+      // If we were able to successfully find an Portfolio with the given id, send it back to the client
+      res.json(dbPortfolio);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
 // POST routes //
 app.post('/api/portfolio', (req, res) => {
   const portfolio = new Portfolio(req.body);
@@ -91,7 +113,7 @@ app.post('/api/review/', function(req, res) {
     .then(function(dbReview) {
       return Portfolio.findOneAndUpdate(
         { _id: id },
-        { $push: { review: dbReview._id }, $set:{reviewed: true} },
+        { $push: { review: dbReview._id }, $set: { reviewed: true } },
         { new: true }
       );
     })
