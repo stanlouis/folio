@@ -58,7 +58,7 @@ header .navItem span {
   margin-right: 10px;
 }
 
-.book_item {
+.portfolio_item {
   border-bottom: 4px solid #f1f1f1;
   box-sizing: border-box;
   padding: 10px 20px;
@@ -66,14 +66,14 @@ header .navItem span {
   background: #f5f5f578;
 }
 
-.book_item .book_header h2 {
+.portfolio_item .portfolio_header h2 {
   font-size: 20px;
   color: #686868;
   margin: 4px 0px 0px 0px;
   font-weight: 300;
 }
 
-.book_item .book_bubble {
+.portfolio_item .portfolio_bubble {
   background: #e91e63;
   display: inline-block;
   padding: 3px 5px;
@@ -83,29 +83,29 @@ header .navItem span {
   color: #fff;
 }
 
-.book_item .book_bubble.rating {
+.portfolio_item .portfolio_bubble.rating {
   background: #5f5f5f;
 }
 
-.book_item .book_author {
+.portfolio_item .portfolio_author {
   font-size: 15px;
   color: #5f5f5f;
   font-weight: 700;
 }
 
-.book_item .book_items {
+.portfolio_item .portfolio_items {
   font-size: 13px;
 }
 
-.book_item .book_items strong {
+.portfolio_item .portfolio_items strong {
   color: #ffffff;
 }
-.book_item .book_items div {
+.portfolio_item .portfolio_items div {
   margin-bottom: 8px;
 }
 
-.loadmore {
-  background: #dbdbdb;
+.load_more {
+  background: #00bcd4;
   text-align: center;
   text-transform: uppercase;
   color: #ffffff;
