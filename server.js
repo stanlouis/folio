@@ -46,10 +46,9 @@ app.get('/api/logout', auth, (req, res) => {
   });
 });
 
-app.get('/api/getPortfolio', (req, res) => {
-  let id = req.query.id;
+app.get('/api/getPortfolio/:id', (req, res) => {
 
-  Portfolio.findById(id, (err, doc) => {
+  Portfolio.findById(req.params.id, (err, doc) => {
     if (err) return res.status(400).send(err);
     res.send(doc);
   });
@@ -78,7 +77,7 @@ app.get('/api/portfolios/reviewed', (req, res) => {
 
 app.get('/api/portfolio/notes/:id', function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-  console.log(req.params.id)
+  console.log(req.params.id);
   Portfolio.findOne({ _id: req.params.id })
     // ..and populate all of the notes associated with it
     .populate('review')
@@ -105,14 +104,13 @@ app.post('/api/portfolio', (req, res) => {
   });
 });
 
-app.post('/api/review/', function(req, res) {
+app.post('/api/review/:id', function(req, res) {
   // Create a new review and pass the req.body to the entry
-  let id = req.query.id;
   console.log('review', req.body);
   Review.create(req.body)
     .then(function(dbReview) {
       return Portfolio.findOneAndUpdate(
-        { _id: id },
+        { _id: req.params.id },
         { $push: { review: dbReview._id }, $set: { reviewed: true } },
         { new: true }
       );
@@ -164,22 +162,6 @@ app.post('/api/login', (req, res) => {
     });
   });
 });
-
-// UPDATE //
-// app.put('/api/portfolio_review', (req, res) => {
-//   Portfolio.findByIdAndUpdate(
-//     req.body._id,
-//     req.body,
-//     { new: true },
-//     (err, doc) => {
-//       if (err) return res.status(400).send(err);
-//       res.json({
-//         success: true,
-//         doc
-//       });
-//     }
-//   );
-// });
 
 const PORT = process.env.PORT || 3001;
 
