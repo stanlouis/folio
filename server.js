@@ -11,14 +11,6 @@ app.use(cookieParser());
 
 require('./routes/authRoutes')(app);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
-
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/folio")
   .then(() => console.log('Connected to MongoDB...'))
@@ -170,6 +162,14 @@ app.post('/api/login', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server running at port:${PORT}`);
