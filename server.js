@@ -2,8 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-// if mongo require a password
-// const config = require('./config/config').get(process.env.NODE_ENV);
+const config = require('./config/config').get(process.env.NODE_ENV);
 const app = express();
 
 app.use(bodyParser.json());
@@ -14,9 +13,9 @@ require('./routes/authRoutes')(app);
 app.use(express.static("client/build"));
 
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/folio")
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.log('Could not connect to MongoDB', err));
+  .connect(config.DATABASE)
+  .then(() => console.log("Connected to MongoDB..."))
+  .catch(err => console.log("Could not connect to MongoDB", err));
 
 const { User } = require('./models/user');
 const { Portfolio } = require('./models/portfolio');
