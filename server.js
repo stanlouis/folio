@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const config = require('./config/config').get(process.env.NODE_ENV);
+// if mongo require a password
+// const config = require('./config/config').get(process.env.NODE_ENV);
 const app = express();
 
 app.use(bodyParser.json());
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 mongoose
-  .connect(config.DATABASE)
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/folio")
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.log('Could not connect to MongoDB', err));
 
@@ -30,7 +31,7 @@ const { auth } = require('./middleware/auth');
 
 // GET routes //
 app.get('/api/auth', auth, (req, res) => {
-  console.log(req.user)
+  console.log(req.user);
   res.json({
     isAuth: true,
     id: req.user._id,
@@ -47,8 +48,12 @@ app.get('/api/logout', auth, (req, res) => {
   });
 });
 
-app.get('/api/getPortfolio/:id', (req, res) => {
+app.get('/api/users', (req, res) => {
+  User.find().then((doc, err) => res.send(doc))
+  .catch(err => res.json({ err: err }));
+});
 
+app.get('/api/getPortfolio/:id', (req, res) => {
   Portfolio.findById(req.params.id, (err, doc) => {
     if (err) return res.status(400).send(err);
     res.send(doc);
