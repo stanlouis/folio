@@ -20,12 +20,12 @@ const SidenavItems = ({ user }) => {
       restricted: true
     },
     {
-      type:'navItem',
-      icon:'file-text-o',
-      text:'Register',
-      link:'/user/register',
-      restricted:true
-  },
+      type: 'navItem',
+      icon: 'file-text-o',
+      text: 'Register',
+      link: '/user/register',
+      restricted: true
+    },
     {
       type: 'navItem',
       icon: 'file-text-o',
@@ -38,6 +38,13 @@ const SidenavItems = ({ user }) => {
       icon: 'file-text-o',
       text: 'My reviews',
       link: '/user/user-reviews',
+      restricted: true
+    },
+    {
+      type: 'navItem',
+      icon: 'file-text-o',
+      text: 'Add Portfolio',
+      link: '/user/add',
       restricted: true
     },
     {

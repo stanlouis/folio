@@ -16,7 +16,15 @@ export function getPortfolios(limit = 10, start = 0, order = 'asc', list = '') {
     payload: request
   };
 }
+export function addPortfolio(portfolio){
+    const request = axios.post('/api/portfolio',portfolio)
+        .then(response => response.data);
 
+    return {
+        type:'ADD_PORTFOLIO',
+        payload:request
+    }
+}
 /*========= USER ===========*/
 
 export function loginUser({email,password}){
