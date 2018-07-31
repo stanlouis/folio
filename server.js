@@ -30,11 +30,12 @@ const { auth } = require('./middleware/auth');
 
 // GET routes //
 app.get('/api/auth', auth, (req, res) => {
+  console.log(req.user)
   res.json({
     isAuth: true,
     id: req.user._id,
     email: req.user.email,
-    name: req.user.name,
+    firstname: req.user.firstname,
     lastname: req.user.lastname
   });
 });
