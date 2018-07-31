@@ -8,8 +8,8 @@ const User = (props) => {
                 <img alt="avatar" src="../images/avatar.png"/>
             </div>
             <div className="nfo">
-                <div><span>Name:</span> {user.firstname}</div>
-                <div><span>Lastname:</span> {user.lastname}</div>
+                <div><span>First Name:</span> {user.firstname}</div>
+                <div><span>Last Name:</span> {user.lastname}</div>
                 <div><span>Email:</span> {user.email}</div>
             </div>
         </div>

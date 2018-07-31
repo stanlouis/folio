@@ -20,6 +20,13 @@ const SidenavItems = ({ user }) => {
       restricted: true
     },
     {
+      type:'navItem',
+      icon:'file-text-o',
+      text:'Register',
+      link:'/user/register',
+      restricted:true
+  },
+    {
       type: 'navItem',
       icon: 'file-text-o',
       text: 'Login',
