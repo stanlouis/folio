@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import StarRatingComponent from 'react-star-rating-component';
-import axios from 'axios';
+import React, { Component } from "react";
+import StarRatingComponent from "react-star-rating-component";
+import axios from "axios";
 
 class PortfolioView extends Component {
   state = {
-    portfolioWithReview: '',
+    portfolioWithReview: "",
     overall_rating: 0,
     content_rating: 0,
     design_rating: 0,
     responsiveness_rating: 0,
-    review_post: ''
+    review_post: ""
   };
   componentDidMount() {
     let id = this.props.match.params.id;
@@ -85,10 +85,10 @@ class PortfolioView extends Component {
       <div className="user_container">
         <div className="nfo">
           <div>
-            <span>Title:</span> {folioInfo.title} <br/>
-            {/* Need a fix */}
-            <a href={`${folioInfo.url}`}>Portfolio Link</a>
-  
+            <span>Title:</span> {folioInfo.title} <br />
+            <a target="_blank" href={`${folioInfo.url}`}>
+              Portfolio Link
+            </a>
           </div>
           <div className="avatar">
             <img alt="folio_image" src={folioInfo.imgUrl} />
