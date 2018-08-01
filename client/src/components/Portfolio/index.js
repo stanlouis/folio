@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 class PortfolioView extends Component {
   state = {
@@ -12,15 +13,10 @@ class PortfolioView extends Component {
     review_post: ''
   };
   componentDidMount() {
-    console.log(this.props.match.params.id);
     let id = this.props.match.params.id;
     axios.get(`/api/portfolio/notes/${id}`).then(res => {
       const portfolioWithReview = res.data;
       this.setState({ portfolioWithReview });
-    });
-
-    axios.post(`/api/review/${id}`).then(res => {
-      // todo
     });
   }
   showFolioReviews = folioInfo =>
@@ -60,27 +56,47 @@ class PortfolioView extends Component {
     });
   }
 
-  handleInput = (event) => {
+  handleInput = event => {
     this.setState({
       review_post: event.target.value
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    let id = this.props.match.params.id;
+    const review = {
+      review_post: this.state.review_post,
+      overall_rating: this.state.overall_rating,
+      content_rating: this.state.content_rating,
+      design_rating: this.state.design_rating,
+      responsiveness_rating: this.state.responsiveness_rating,
+      _portfolio_id: id
+    };
+
+    axios.post(`/api/review/${id}`, { ...review }).then(response => {
+      return response => response.data;
+    });
+    window.location.reload();
+  };
+
   render() {
-    console.log('state', this.state);
     const folioInfo = this.state.portfolioWithReview;
     return (
       <div className="user_container">
         <div className="nfo">
           <div>
-            <span>Title:</span> {folioInfo.title}
+            <span>Title:</span> {folioInfo.title} <br/>
+            {/* Need a fix */}
+            <a href={`${folioInfo.url}`}>Portfolio Link</a>
+  
           </div>
           <div className="avatar">
             <img alt="folio_image" src={folioInfo.imgUrl} />
           </div>
           <div>
             <div className="rl_container article">
-              <form onSubmit={this.submitForm}>
+              <form onSubmit={this.handleSubmit}>
                 <h2>Submit Portfolio Review</h2>
                 <span>
                   <h2>Overall Rating:</h2>
@@ -136,12 +152,5 @@ class PortfolioView extends Component {
     );
   }
 }
-
-// function mapStateToProps(state) {
-//   console.log('state', state);
-//   return {
-//     portfolios: state.portfolios
-//   };
-// }
 
 export default PortfolioView;

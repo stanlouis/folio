@@ -12,17 +12,9 @@ const PortfolioItem = (item) => {
                   <img src={item.imgUrl} alt="portfolio_image"/>
                 </div>
                
-                {/* <div className="portfolio_bubble">
-                    <strong>Price</strong> $ {item.price}
-                </div>
-
                 <div className="portfolio_bubble">
-                    <strong>Pages</strong>  {item.pages}
+                    <strong>View/Review Portfolio</strong>
                 </div>
-
-                <div className="portfolio_bubble rating">
-                    <strong>Rating</strong>  {item.rating}
-                </div> */}
 
             </div>
         </Link>
