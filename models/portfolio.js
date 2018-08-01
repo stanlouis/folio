@@ -11,7 +11,8 @@ const portfolioSchema = mongoose.Schema(
     },
     url: {
       type: String,
-      required: true
+      required: true,
+      unique: { index: { unique: true } }
     },
     imgUrl: {
       type: String,

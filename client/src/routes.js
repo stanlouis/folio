@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home/home';
 import Layout from './hoc/layout';
 import Login from './containers/Login/login';
+import PortfolioView from './components/Portfolio';
 import AddPortfolio from './containers/AddPortfolio/add';
 import User from './components/Admin/profile';
 import Register from './containers/Register/register';
@@ -19,6 +20,7 @@ const Routes = () => {
         <Route path="/user" exact component={Auth(User, true)} />
         <Route path="/user/add" exact component={Auth(AddPortfolio,true)}/>
         <Route path="/user/register" exact component={Auth(Register,false)}/>
+        <Route path="/portfolios/:id" exact component={Auth(PortfolioView,null)}/>
       </Switch>
     </Layout>
   );

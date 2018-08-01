@@ -62,7 +62,7 @@ class Register extends PureComponent {
     return (
       <div className="rl_container">
         <form onSubmit={this.submitForm}>
-          <h2>Registration Information</h2>
+          <h2>Sign Up</h2>
 
           <div className="form_element">
             <input
@@ -101,7 +101,7 @@ class Register extends PureComponent {
             />
           </div>
 
-          <button type="submit">Register</button>
+          <button type="submit">Sign-up</button>
           <div className="error">{this.state.error}</div>
         </form>
       </div>

@@ -6,7 +6,7 @@ import PortfolioItem from '../widgetsUI/portfolio_item';
 
 class HomeContainer extends Component {
   componentWillMount() {
-    this.props.dispatch(getPortfolios(1, 0, 'desc'));
+    this.props.dispatch(getPortfolios(2, 0, 'desc'));
   }
 
   renderItems = portfolios =>

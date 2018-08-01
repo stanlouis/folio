@@ -35,7 +35,7 @@ class AddPortfolio extends Component {
     return (
       <div className="rl_container article">
         <form onSubmit={this.submitForm}>
-          <h2>Add Your Portfolio</h2>
+          <h2>Submit Portfolio</h2>
 
           <div className="form_element">
             <input
@@ -62,7 +62,7 @@ class AddPortfolio extends Component {
               onChange={event => this.handleInput(event, 'imgUrl')}
             />
           </div>
-          <button type="submit">Add Portfolio</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     );
