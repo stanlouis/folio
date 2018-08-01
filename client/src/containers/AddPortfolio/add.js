@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
-import { addPortfolio } from '../../actions'
+import { Link } from 'react-router-dom';
+import { addPortfolio, clearNewPortfolio } from '../../actions';
 
 class AddPortfolio extends Component {
   state = {
@@ -23,12 +23,27 @@ class AddPortfolio extends Component {
     });
   };
 
-  submitForm = (e) => {
-      e.preventDefault();
-      this.props.dispatch(addPortfolio({
-          ...this.state.formdata,
-          ownerId:this.props.user.login.id
-      }))
+  showNewPortfolio = (portfolio) => (
+    portfolio.post ?
+        <div className="conf_link">
+            Success !! <Link to={`/portfolios/${portfolio.portfolioId}`}>
+                Click the link to see the portfolio.
+            </Link>
+        </div>
+    :null
+)
+
+  submitForm = e => {
+    e.preventDefault();
+    this.props.dispatch(
+      addPortfolio({
+        ...this.state.formdata,
+        ownerId: this.props.user.login.id
+      })
+    );
+  };
+  componentWillUnmount() {
+    this.props.dispatch(clearNewPortfolio());
   }
 
   render() {
@@ -63,6 +78,9 @@ class AddPortfolio extends Component {
             />
           </div>
           <button type="submit">Submit</button>
+          {this.props.portfolios.newPortfolio
+            ? this.showNewPortfolio(this.props.portfolios.newPortfolio)
+            : null}
         </form>
       </div>
     );
@@ -70,7 +88,7 @@ class AddPortfolio extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state);
   return {
     portfolios: state.portfolios
   };

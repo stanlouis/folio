@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
 
 class PortfolioView extends Component {
   state = {

@@ -16,6 +16,14 @@ export function getPortfolios(limit = 10, start = 0, order = 'asc', list = '') {
     payload: request
   };
 }
+
+export function clearNewPortfolio() {
+  return {
+      type:'CLEAR_NEWPORTFOLIO',
+      payload:{}
+  }
+}
+
 export function addPortfolio(portfolio) {
   const request = axios
     .post('/api/portfolio', portfolio)
