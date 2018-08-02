@@ -16,22 +16,29 @@ class Header extends Component {
     return (
       <header>
         <div className="open_nav">
-          <FontAwesome
+          {/* <FontAwesome
             name="bars"
-            onClick={() => this.setState({ showNav: true })}
+            
             style={{
               color: '#ffffff',
               padding: '10px',
               cursor: 'pointer'
             }}
-          />
+          /> */}
           <Nav
             showNav={this.state.showNav}
             onHideNav={() => this.onHideNav()}
           />
         </div>
-        <Link to="/" className="logo">
+        <Link to="/" className="logo"
+        onClick={() => this.setState({ showNav: true })}
+        style={{
+          color: '#ffffff',
+          padding: '10px',
+          cursor: 'pointer'
+        }}>
           Folio Reviews
+          
         </Link>
       </header>
     );

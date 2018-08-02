@@ -22,16 +22,16 @@ a:focus {
 
 header {
   padding-top: 5px;
-  background: #00bcd4;
+  background: #f04c55;
   position: relative;
 }
 
 header .logo {
-  text-align: center;
+  text-align: left;
   font-size: 30px;
-  font-family: 'Ranga', cursive;
+  font-family: 'Heebo', sans-serif;
   color: #ffffff;
-  border-bottom: 6px solid #0495a8;
+  /* border-bottom: 6px solid #a80404; */
   display: block;
 }
 
@@ -105,7 +105,7 @@ header .navItem span {
 }
 
 .load_more {
-  background: #00bcd4;
+  background: #bc0900;
   text-align: center;
   text-transform: uppercase;
   color: #ffffff;
@@ -129,8 +129,15 @@ header .navItem span {
 .rl_container h2 {
   font-size: 33px;
   font-weight: 300;
-  color: #02bcd4;
+  color: #be0000;
 }
+
+.rl_container h1 {
+  font-size: 36px;
+  font-weight: 350;
+  color: #be0000;
+}
+
 
 .rl_container input {
   font-size: 20px;
@@ -149,12 +156,13 @@ header .navItem span {
 .rl_container.article textarea {
   background: #f7f7f7;
   border: 1px solid #ebebeb;
-  border-radius: 3px;
-  width: 80%;
+  border-radius: 10px;
+  width: 450px;
   padding: 20px;
   box-sizing: border-box;
   margin-top: 20px;
   font-size: 14px;
+  
 }
 .rl_container.article select {
   width: 80%;
@@ -165,11 +173,11 @@ header .navItem span {
 
 .rl_container button {
   font-size: 20px;
-  padding: 10px 52px;
-  background: #02bcd4;
+  padding: 8px 52px;
+  background: #ff6161;
   color: #fff;
   font-weight: 300;
-  border-radius: 3px;
+  border-radius: 10px;
   border: none;
   margin-top: 20px;
   width: 260px;
@@ -269,17 +277,23 @@ tr:nth-child(even) {
 }
 .user_container .nfo {
   box-sizing: border-box;
-  padding: 20px;
+  float: right;
+  margin-left: 120px;
+  
 }
 .user_container .nfo div {
-  font-size: 23px;
+  font-size: 36px;
   font-weight: 300;
   margin-bottom: 10px;
+  margin-left: 65px;
   color: #a4a4a4;
+  text-align: left;
+  display: inline-block;
 }
 .user_container .nfo div span {
   font-weight: 500;
-  color: #02bcd4;
+  font-size: 36px;
+  color: #d40202;
 }
 
 /*=============================
@@ -304,7 +318,7 @@ tr:nth-child(even) {
 .br_container .br_header h5 {
   margin: 5px 0px;
   font-size: 31px;
-  color: #02bcd4;
+  color: #ff7b7b;
 }
 
 .br_container .br_header .br_reviewer {
@@ -330,7 +344,7 @@ tr:nth-child(even) {
 
 .br_container .br_box .left {
   min-width: 50%;
-  background: #e91e63;
+  background: #ff7b7b;
   color: #fff;
   box-sizing: border-box;
   padding: 15px;
@@ -361,7 +375,7 @@ tr:nth-child(even) {
 }
 
 .logout_container h1 {
-  color: #02bcd4;
+  color: #ff8282;
   font-size: 30px;
   font-weight: 300;
   text-align: center;
@@ -438,4 +452,45 @@ tr:nth-child(even) {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+iframe{
+  height: 685px;
+  width: 600px;
+  border-radius: 10px;
+  margin: 12px;
+}
+
+.jumbotron{
+  display: inline-grid;
+  height: 742px;  
+  width: 458px;
+  border-radius: .1.3rem;
+  text-align: left;
+  align-content: left;
+  background-color: #fff7f799;
+  width: 500px;
+  margin: 10px;
+  
+}
+
+.textarea{
+  display: inline-grid;
+  margin-top: 10px;
+  width: 800px;
+}
+
+.text-center{
+  display: inline-grid;
+  margin-top: 10px;
+}
+
+.button{
+  text-align: center;
+  width: 100px;
+}
+
+#jumbo{
+  width: 98%;
+  margin: 10px
 }
